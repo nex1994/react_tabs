@@ -4,11 +4,11 @@ type Props = {
     title: string;
     content: string;
   }[];
-  isSelected: string;
+  selectedTabId: string;
   onTabSelected: (tabID: string) => void;
 };
 
-export const Tabs = ({ tabs, isSelected, onTabSelected }: Props) => {
+export const Tabs = ({ tabs, selectedTabId, onTabSelected }: Props) => {
   return (
     <div data-cy="TabsComponent">
       <div className="tabs is-boxed">
@@ -17,7 +17,7 @@ export const Tabs = ({ tabs, isSelected, onTabSelected }: Props) => {
             return (
               <li
                 key={tab.id}
-                className={isSelected === tab.id ? 'is-active' : ''}
+                className={selectedTabId === tab.id ? 'is-active' : ''}
                 data-cy="Tab"
                 onClick={() => onTabSelected(tab.id)}
               >
@@ -31,7 +31,7 @@ export const Tabs = ({ tabs, isSelected, onTabSelected }: Props) => {
       </div>
 
       <div className="block" data-cy="TabContent">
-        {tabs.map(tab => (tab.id === isSelected ? tab.content : ''))}
+        {tabs.map(tab => (tab.id === selectedTabId ? tab.content : ''))}
       </div>
     </div>
   );
